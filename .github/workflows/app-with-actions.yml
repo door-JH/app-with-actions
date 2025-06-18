@@ -50,7 +50,7 @@ jobs:
         username: ${{ secrets.EC2_USERNAME }}
         key: ${{ secrets.EC2_PRIVATE_KEY }}
         source: "*.jar"
-        target: "/home/ubuntu/app"
+        target: /home/ubuntu/app
        
     - name: Execute deployment script
       uses: appleboy/ssh-action@v1.2.2
