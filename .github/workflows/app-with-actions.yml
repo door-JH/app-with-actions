@@ -44,13 +44,13 @@ jobs:
         name: app
 
     - name: Deploy to EC2
-      uses: appleboy/scp-action@v1
+      uses: appleboy/scp-action@v1.2.2
       with: 
         host: ${{ secrets.EC2_HOST }}
         username: ${{ secrets.EC2_USERNAME }}
         key: ${{ secrets.EC2_PRIVATE_KEY }}
         source: "*.jar"
-        target: /home/ubuntu/app
+        target: "/home/ubuntu/app"
        
     - name: Execute deployment script
       uses: appleboy/ssh-action@v1.2.2
