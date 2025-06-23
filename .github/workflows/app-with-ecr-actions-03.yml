@@ -108,8 +108,8 @@ jobs:
             # EOF
 
             aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $ECR_ID.dkr.ecr.$REGION.amazonaws.com
-            docker pull $ECR_ID.dkr.ecr.$REGION.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
-
+            # docker pull $ECR_ID.dkr.ecr.$REGION.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
+            docker pull $ECR_ID.dkr.ecr.$REGION.amazonaws.com/$ECR_REPOSITORY:latest
             if [ -n "$(docker ps -q)" ]; then
               docker stop $(docker ps -q);
             fi
@@ -120,4 +120,5 @@ jobs:
             # docker rm $(docker ps -aq) -f || true
             
             docker run -d --name backend-server -p 8080:8080 \
-            $ECR_ID.dkr.ecr.$REGION.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
+            # $ECR_ID.dkr.ecr.$REGION.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
+            $ECR_ID.dkr.ecr.$REGION.amazonaws.com/$ECR_REPOSITORY:latest
